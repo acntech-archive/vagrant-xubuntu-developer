@@ -32,6 +32,21 @@ class java (
 		require => Exec["install-java"],
 	}
 
+	exec { "set-default-java":
+		command => "update-alternatives --install \"/usr/bin/java\" \"java\" \"/opt/java/default/bin/java\" 1 && update-alternatives --set \"java\" \"/opt/java/default/bin/java\"",
+		require => Exec["install-java"],
+	}
+
+	exec { "set-default-javac":
+		command => "update-alternatives --install \"/usr/bin/javac\" \"javac\" \"/opt/java/default/bin/javac\" 1 && update-alternatives --set \"javac\" \"/opt/java/default/bin/javac\"",
+		require => Exec["install-java"],
+	}
+
+	exec { "set-default-jar":
+		command => "update-alternatives --install \"/usr/bin/jar\" \"jar\" \"/opt/java/default/bin/jar\" 1 && update-alternatives --set \"jar\" \"/opt/java/default/bin/jar\"",
+		require => Exec["install-java"],
+	}
+
 	file { "java-env":
 		path => "/etc/profile.d/java.sh",
 		content => "export JAVA_HOME=/opt/java/default\nexport PATH=\${PATH}:\${JAVA_HOME}/bin\n",
