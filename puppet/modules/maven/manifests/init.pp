@@ -32,6 +32,11 @@ class maven (
 		require => Exec["extract-maven"],
 	}
 
+    exec { "set-default-maven":
+        command => "update-alternatives --install \"/usr/bin/mvn\" \"mvn\" \"/opt/maven/default/bin/mvn\" 1 && update-alternatives --set \"mvn\" \"/opt/maven/default/bin/mvn\"",
+        require => Exec["extract-maven"],
+    }
+
     file { "/etc/profile.d/maven.sh":
         content => "export MAVEN_HOME=${maven_home}\nexport M2_HOME=\${MAVEN_HOME}\nexport PATH=\${PATH}:\$MAVEN_HOME/bin\n",
         require => Exec["extract-maven"],

@@ -27,4 +27,9 @@ class intellij (
 		target => "${intellij_install}",
 		require => Exec["intellij-install"],
 	}
+
+	file { "intellij-icon":
+		path => "/usr/share/applications/intellij.desktop",
+		source => "/vagrant/puppet/modules/intellij/files/intellij.desktop",
+	}
 }

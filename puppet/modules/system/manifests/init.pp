@@ -1,10 +1,8 @@
 class system {
 
-	package { "vim":
-		ensure => "installed",
-	}
+   $packages = ["curl", "vim", "git", "tofrodos"]
 
-	package { "git":
-		ensure => "installed",
-	}
+   package { $packages:
+      ensure => "installed",
+   }
 }
