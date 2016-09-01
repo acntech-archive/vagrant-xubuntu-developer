@@ -1,8 +1,8 @@
 class java (
 	$java_root = "/opt/java",
 	$java_home = "/opt/java/default",
-	$java_install = "/opt/java/jdk1.8.0_92",
-	$java_url = "http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz",
+	$java_install = "/opt/java/jdk1.8.0_101",
+	$java_url = "http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.tar.gz",
 	) {
 
 	exec { "download-java":

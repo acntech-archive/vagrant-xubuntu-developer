@@ -1,5 +1,5 @@
 class intellij (
-	$intellij_version = "2016.2.1",
+	$intellij_version = "2016.2.3",
 	$intellij_home = "/opt/intellij",
 	$intellij_default = "/opt/intellij/default",
 	$intellij_archive = "intellij.tar.gz",
@@ -8,7 +8,7 @@ class intellij (
 	$tmp = "/tmp") {
 
 	exec { "download-intellij":
-		command => "wget https://download-cf.jetbrains.com/idea/idea${intellij_edition}-${$intellij_version}.tar.gz -O ${tmp}/${intellij_archive}",
+		command => "wget --no-cookies --no-check-certificate https://download.jetbrains.com/idea/idea${intellij_edition}-${$intellij_version}.tar.gz -O ${tmp}/${intellij_archive}",
 	}
 
 	file { ["${intellij_home}", "${intellij_install}"]:

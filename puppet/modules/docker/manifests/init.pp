@@ -24,7 +24,7 @@ class docker {
 	package { "docker-compose-install":
 		name => "docker-compose",
 		ensure => "installed",
-		require => Exec["docker-engine-install"],
+		require => Package["docker-engine-install"],
 	}
 
 	user { "docker-group":
