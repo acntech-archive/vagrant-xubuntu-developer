@@ -11,19 +11,25 @@ class docker {
 	}
 
 	exec { "apt-update":
-    	command => "/usr/bin/apt-get update",
-    	require => File["docker-apt-repo"],
+		command => "/usr/bin/apt-get update",
+		require => File["docker-apt-repo"],
 	}
 
-	package { "docker-install":
+	package { "docker-engine-install":
 		name => "docker-engine",
 		ensure => "installed",
 		require => Exec["apt-update"],
 	}
 
+	package { "docker-compose-install":
+		name => "docker-compose",
+		ensure => "installed",
+		require => Exec["docker-engine-install"],
+	}
+
 	user { "docker-group":
 		name => "vagrant",
 		groups => "docker",
-		require => Package["docker-install"],
+		require => Package["docker-engine-install"],
 	}
 }
