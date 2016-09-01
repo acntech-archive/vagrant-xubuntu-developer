@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
   end
 
   # Update packages
-  config.vm.provision "shell", inline: "apt-get -y update && apt-get -y upgrade"
+  config.vm.provision "shell", inline: "DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y -o Dpkg::Options::=\"--force-confdef\" upgrade"
 
   # Enable provisioning with puppet
   config.vm.provision "puppet" do |puppet|
