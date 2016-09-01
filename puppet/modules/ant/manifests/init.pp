@@ -6,7 +6,7 @@ class ant (
     ) {
 
     exec { "download-ant" :
-        command => "wget https://www.apache.org/dist/ant/binaries/apache-ant-${ant_version}-bin.tar.gz -O ${tmp}/ant.tar.gz",
+        command => "wget --no-cookies --no-check-certificate https://www.apache.org/dist/ant/binaries/apache-ant-${ant_version}-bin.tar.gz -O ${tmp}/ant.tar.gz",
     }
 
     exec { "delete-ant":

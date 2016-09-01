@@ -6,7 +6,7 @@ class maven (
     ) {
 
     exec { "download-maven" :
-        command => "wget https://www.apache.org/dist/maven/maven-3/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz -O ${tmp}/maven.tar.gz",
+        command => "wget --no-cookies --no-check-certificate https://www.apache.org/dist/maven/maven-3/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz -O ${tmp}/maven.tar.gz",
     }
 
     exec { "delete-maven":
