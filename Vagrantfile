@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
 
   # Name of Vagrant Box
-  config.vm.box = "acntech/xubuntu-basic"
+  config.vm.box = "acntech/xubuntu-puppet"
 
   # Don't generate new SSH key, but use the default insecure key
   config.ssh.insert_key = false
