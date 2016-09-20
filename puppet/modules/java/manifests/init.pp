@@ -7,6 +7,8 @@ class java (
 
 	exec { "download-java":
 		command => "wget --no-cookies --no-check-certificate --header \"Cookie: oraclelicense=accept-securebackup-cookie\" \"${java_url}\" -O /tmp/jdk.tar.gz",
+		timeout => 1800,
+		unless => ["test -d ${java_install}"],
 	}
 
 	exec { "delete-java":
@@ -14,7 +16,7 @@ class java (
 		before => File["create-java-dir"],
 	}
 
-	file { "create-java-dir" :
+	file { "create-java-dir":
 		path => "${java_root}",
 		ensure => "directory",
 		before => Exec["install-java"],
@@ -39,6 +41,11 @@ class java (
 
 	exec { "set-default-javac":
 		command => "update-alternatives --install \"/usr/bin/javac\" \"javac\" \"/opt/java/default/bin/javac\" 1 && update-alternatives --set \"javac\" \"/opt/java/default/bin/javac\"",
+		require => Exec["install-java"],
+	}
+
+	exec { "set-rng-to-urandom":
+		command => "sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/g' ${java_home}/jre/lib/security/java.security",
 		require => Exec["install-java"],
 	}
 
