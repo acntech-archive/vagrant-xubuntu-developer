@@ -1,5 +1,5 @@
 class intellij (
-	$intellij_version = "2016.2.4",
+	$intellij_version = "2016.3.3",
 	$intellij_home = "/opt/intellij",
 	$intellij_archive = "/tmp/intellij.tar.gz",
 	$intellij_edition = "ideaIC",
