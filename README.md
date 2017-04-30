@@ -1,7 +1,4 @@
 # vagrant-xubuntu-developer
-<<<<<<< Updated upstream
-Developer Vagrant box based on the acntech/xubuntu box with developer tools installed
-=======
 Developer Vagrant box based on the acntech/xubuntu box with developer tools installed.
 
 Installed tools:
@@ -12,4 +9,3 @@ Installed tools:
 * Apache Maven 3.5.0
 * Apache Ant 1.10.1
 * JetBrains IntelliJ 2017.1.2 Community Edition
->>>>>>> Stashed changes
