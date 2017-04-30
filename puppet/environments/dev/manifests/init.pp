@@ -21,6 +21,7 @@ class apt {
 }
 
 include system
+include git
 include docker
 include java
 include maven

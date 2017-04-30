@@ -1,0 +1,22 @@
+[alias]
+	a = add
+	aa = add --all
+	co = checkout
+	ci = commit
+	cim = commit -m
+	cl = clone
+	br = branch
+	st = status
+	sts = status -s
+	nice = log --all --graph --decorate --oneline
+	lol = log --all --graph --decorate --date=format:\"%Y-%m-%d %H:%M:%S\" --pretty=format:\"%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(cyan)[%an <%ae> (%cn <%ce>) %cd]%Creset\" --abbrev-commit
+	fi = flow init
+	ff = flow feature
+	ffs = flow feature start
+	fff = flow feature finish
+	ffp = flow feature publish
+[core]
+	autocrlf = input
+	longpaths = true
+[push]
+	default = simple

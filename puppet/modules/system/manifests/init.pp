@@ -1,6 +1,6 @@
 class system {
 
-   $packages = ["curl", "vim", "git", "tofrodos"]
+   $packages = ["tofrodos"]
 
    package { $packages:
       ensure => "installed",

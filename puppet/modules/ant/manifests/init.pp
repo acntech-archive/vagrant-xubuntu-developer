@@ -1,5 +1,5 @@
 class ant (
-	$ant_version = "1.10.0", # Change this value to upgrade Ant.
+	$ant_version = "1.10.1", # Change this value to upgrade Ant.
     $ant_root = "/opt/ant",
     $ant_home = "/opt/ant/default",
     $tmp = "/tmp"

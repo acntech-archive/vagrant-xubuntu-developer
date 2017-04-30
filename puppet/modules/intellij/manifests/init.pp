@@ -1,5 +1,5 @@
 class intellij (
-	$intellij_version = "2016.3.3",
+	$intellij_version = "2017.1.2",
 	$intellij_home = "/opt/intellij",
 	$intellij_archive = "/tmp/intellij.tar.gz",
 	$intellij_edition = "ideaIC",
@@ -15,6 +15,7 @@ class intellij (
 	file { ["${intellij_home}", "${intellij_install}"]:
 		ensure => directory,
 		owner => "vagrant",
+		group => "vagrant",
 		before => Exec["intellij-install"],
 	}
 

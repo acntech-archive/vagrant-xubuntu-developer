@@ -1,5 +1,5 @@
 class maven (
-	$maven_version = "3.3.9", # Change this value to upgrade Maven.
+	$maven_version = "3.5.0", # Change this value to upgrade Maven.
     $maven_root = "/opt/maven",
     $maven_home = "/opt/maven/default",
     $tmp = "/tmp"

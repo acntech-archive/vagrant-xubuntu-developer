@@ -1,48 +1,41 @@
 class docker (
-	$docker_compose_version = "1.10.0"
+	$docker_compose_version = "1.12.0"
 	) {
 
 	exec { "docker-apt-key":
-		command => "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D",
+		command => "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
 	}
 
-	file { "docker-apt-repo":
-		path => "/etc/apt/sources.list.d/docker.list",
-		content => "deb https://apt.dockerproject.org/repo ubuntu-xenial main\n",
+	exec { "docker-apt-repo":
+		command => "add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"",
 		require => Exec["docker-apt-key"],
 	}
 
 	exec { "apt-update":
 		command => "/usr/bin/apt-get update",
-		require => File["docker-apt-repo"],
+		require => Exec["docker-apt-repo"],
 	}
 
-	package { "docker-engine-install":
-		name => "docker-engine",
+	package { "docker-install":
+		name => "docker-ce",
 		ensure => "installed",
 		require => Exec["apt-update"],
-	}
-
-	package { "docker-compose-install":
-		name => "docker-compose",
-		ensure => "installed",
-		require => Package["docker-engine-install"],
 	}
 
 	user { "docker-group":
 		name => "vagrant",
 		groups => "docker",
-		require => Package["docker-engine-install"],
+		require => Package["docker-install"],
 	}
 
-	exec { "download-docker-compose":
-		command => "curl -L https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-$(uname -s)-$(uname -m) > /usr/bin/docker-compose",
+	exec { "docker-compose-install":
+		command => "curl -L https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose",
 		unless => ["which docker-compose && docker-compose -v | grep -q \"version ${docker_compose_version}\""]
 	}
 
 	file { "docker-compose-set-executable":
-		path => "/usr/bin/docker-compose",
+		path => "/usr/local/bin/docker-compose",
 		mode => "0755",
-		require => Exec["download-docker-compose"]
+		require => Exec["docker-compose-install"]
 	}
 }
