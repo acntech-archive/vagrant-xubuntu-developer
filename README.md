@@ -2,8 +2,9 @@
 Developer Vagrant box based on the acntech/xubuntu box with developer tools installed.
 
 Installed tools:
-* Git
-* Docker
+* Git 2.7.4
+* Docker 17.03.1 Community Edition
+* Docker Compose 1.12
 * Oracle Java JDK 8u131
   * Java Security RNG changed to /dev/urandom
 * Apache Maven 3.5.0
