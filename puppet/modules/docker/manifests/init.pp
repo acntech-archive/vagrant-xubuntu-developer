@@ -1,5 +1,5 @@
 class docker (
-	$docker_compose_version = "1.12.0"
+	$docker_compose_version = "1.18.0"
 	) {
 
 	exec { "docker-apt-key":
